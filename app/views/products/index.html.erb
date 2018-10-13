@@ -1,0 +1,17 @@
+<h2><%= Date.today.strftime("%B %Y") %></h2>
+
+<div class="container">
+
+  <% @products.each do |product| %>
+    <div class="grid-item">
+      <a href="<%= product_path(product) %>">
+        <%= image_tag product.images.first.image %>
+      </a>
+    </div>
+  <% end %>
+
+  <div class="grid-item">
+    <a href="#">2018 Calendar</a>
+  </div>
+
+</div>

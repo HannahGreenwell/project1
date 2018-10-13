@@ -1,0 +1,18 @@
+<h2>Login</h2>
+
+<% if flash[:error].present? %>
+  <p><%= flash[:error] %></p>
+<% end %>
+
+<%= form_tag login_path do %>
+  <fieldset>
+    <%= label_tag :email %>
+    <%= email_field_tag :email, nil %>
+  </fieldset>
+  <fieldset>
+    <%= label_tag :password %>
+    <%= password_field_tag :password, nil %>
+  </fieldset>
+
+  <%= submit_tag 'Login' %>
+<% end %>

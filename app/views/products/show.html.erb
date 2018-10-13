@@ -1,0 +1,11 @@
+<h2><%= @product.brand %></h2>
+
+<% @product.images.each do |image| %>
+  <%= image_tag image.image, alt: @product.name %>
+<% end %>
+
+<h4><%= @product.name %></h4>
+
+<p><%= @product.description %></p>
+
+<p><%= @product.price %></p>
