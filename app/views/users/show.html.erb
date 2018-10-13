@@ -1,2 +1,12 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h2>My Account</h2>
+
+<h3>My Profile</h3>
+<p>Name: <%= @current_user.name %></p>
+<p>Email: <%= @current_user.email %></p>
+
+<%= link_to 'Update Account', edit_user_path(@current_user) %>
+ |
+<%= link_to 'Delete Account', user_path(@current_user), method: 'delete' %>
+
+<h3>My Orders</h3>
+...

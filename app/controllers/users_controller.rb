@@ -19,12 +19,29 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find params[:id]
   end
 
   def update
+    @user = User.find params[:id]
+
+    unless @user.id == @current_user.id
+      redirect_to products_path
+      return
+    end
+
+    if @user.update user_params
+      redirect_to user_path(@user)
+    else
+      flash[:errors] = @user.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
+    user = User.find params[:id]
+    user.destroy
+    redirect_to products_path
   end
 
   private
