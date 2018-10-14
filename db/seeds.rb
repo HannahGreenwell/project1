@@ -48,7 +48,23 @@ p8.images << img8
 User.destroy_all
 
 u1 = User.create name:'Hannah', email: 'hannah@gmail.com', password: 'chicken', password_confirmation: 'chicken'
-u1 = User.create name:'Jesi', email: 'jesi@gmail.com', password: 'chicken', password_confirmation: 'chicken'
-u1 = User.create name:'Claire', email: 'claire@gmail.com', password: 'chicken', password_confirmation: 'chicken'
+u2 = User.create name:'Jesi', email: 'jesi@gmail.com', password: 'chicken', password_confirmation: 'chicken'
+u3 = User.create name:'Claire', email: 'claire@gmail.com', password: 'chicken', password_confirmation: 'chicken'
 
 puts "Created #{User.all.length} users."
+
+### CARTS ###
+Cart.destroy_all
+
+c1 = Cart.create user_id: u1.id
+c2 = Cart.create user_id: u2.id
+c3 = Cart.create user_id: u3.id
+
+puts "Created #{Cart.all.length} carts."
+
+### LINE ITEMS ###
+li1 = LineItem.create cart_id: c1.id, product_id: p1.id
+li2 = LineItem.create cart_id: c1.id, product_id: p3.id
+li3 = LineItem.create cart_id: c2.id, product_id: p1.id
+
+puts "Created #{LineItem.all.length} line items."

@@ -14,9 +14,12 @@
 
     <nav>
       <% if @current_user.present? %>
-        <%= link_to "Hello, #{@current_user.name}", user_path(@current_user) %>
+        Hello, <%= link_to @current_user.name, user_path(@current_user) %>
+         |
+        <%= link_to 'My Basket', cart_path(@current_user.cart.id)  %>
          |
         <%= link_to 'Sign Out', login_path, method: 'delete'  %>
+
       <% else %>
         <%= link_to 'Sign In', login_path %>
          |

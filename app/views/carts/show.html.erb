@@ -1,0 +1,9 @@
+<h2>My Shopping Basket</h2>
+
+<ul>
+  <% @cart.line_items.each do |item| %>
+    <li>
+      <%= link_to item.product.name, product_path(item.product) %>
+    </li>
+  <% end %>
+</ul>
