@@ -10,24 +10,35 @@
   </head>
 
   <body class="<%= controller_name %> <%= action_name %>">
-    <h1>8 x 8</h1>
 
-    <nav>
-      <% if @current_user.present? %>
-        Hello, <%= link_to @current_user.name, user_path(@current_user) %>
-         |
-        <%= link_to 'My Basket', cart_path(@current_user.cart.id)  %>
-         |
-        <%= link_to 'Sign Out', login_path, method: 'delete'  %>
+    <div class="app-grid-container">
+      <div class="grid-item">
+          <h1>8 x 8</h1>
 
-      <% else %>
-        <%= link_to 'Sign In', login_path %>
-         |
-        <%= link_to 'Sign Up', new_user_path %>
-      <% end %>
-    </nav>
+          <nav class="account">
+            <% if @current_user.present? %>
+              Hello, <%= link_to @current_user.name, user_path(@current_user) %>
+               |
+              <%= link_to 'My Basket', cart_path(@current_user.cart.id)  %>
+               |
+              <%= link_to 'Sign Out', login_path, method: 'delete'  %>
 
-    <%= yield %>
+            <% else %>
+              <%= link_to 'Sign In', login_path %>
+               |
+              <%= link_to 'Sign Up', new_user_path %>
+            <% end %>
+          </nav>
+      </div>
+
+      <div class="app-grid-item">
+        <main>
+          <%= yield %>
+        </main>
+
+      </div><!-- grid-item -->
+
+    </div><!-- grid-container -->
 
   </body>
 </html>

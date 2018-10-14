@@ -1,9 +1,18 @@
 <h2>My Shopping Basket</h2>
 
-<ul>
-  <% @cart.line_items.each do |item| %>
-    <li>
-      <%= link_to item.product.name, product_path(item.product) %>
-    </li>
-  <% end %>
-</ul>
+<% if @cart.line_items.length > 0 %>
+  <ul>
+    <% @cart.line_items.each do |item| %>
+      <li>
+        <%= item.quantity %> &times
+        <%= link_to item.product.name, product_path(item.product) %>
+        <%= number_to_currency(item.total_price) %>
+         <!-- <%= button_to 'Add', line_item_path(item.id), method: 'patch' %> -->
+         <%= button_to 'Remove', line_item_path(item.id), method: 'delete' %>
+      </li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>Your shopping basket is currently empty.</p>
+<% end %>
