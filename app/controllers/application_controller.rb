@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
       session[:user_id] = nil unless @current_user.present?
   end
 
-  def fetch_cart
-    @cart = Cart.find_or_create_by user_id: @current_user.id
-  end
+  ### REPLACED IN CART MODEL
+  # def fetch_cart
+  #   @cart = Cart.find_or_create_by user_id: @current_user.id
+  # end
 end

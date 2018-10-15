@@ -62,9 +62,19 @@ c3 = Cart.create user_id: u3.id
 
 puts "Created #{Cart.all.length} carts."
 
-### LINE ITEMS ###
-li1 = LineItem.create cart_id: c1.id, product_id: p1.id
-li2 = LineItem.create cart_id: c1.id, product_id: p3.id
-li3 = LineItem.create cart_id: c2.id, product_id: p1.id
+# ### LINE ITEMS ###
+# li1 = LineItem.create cart_id: c1.id, product_id: p1.id
+# li2 = LineItem.create cart_id: c1.id, product_id: p3.id
+# li3 = LineItem.create cart_id: c2.id, product_id: p1.id
+#
+# puts "Created #{LineItem.all.length} line items."
 
-puts "Created #{LineItem.all.length} line items."
+### SIZE ITEMS ###
+ProductSize.destroy_all
+
+s1 = ProductSize.create product_id: p1.id, size: '39', quantity: 2
+s2 = ProductSize.create product_id: p1.id, size: '40', quantity: 2
+s3 = ProductSize.create product_id: p1.id, size: '41', quantity: 2
+s4 = ProductSize.create product_id: p1.id, size: '42', quantity: 2
+
+puts "Created #{ProductSize.all.length} product_sizes."

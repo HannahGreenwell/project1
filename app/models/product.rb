@@ -1,5 +1,4 @@
 class Product < ApplicationRecord
   has_many :images
-  has_many :line_items
-  has_many :sizes
+  has_many :product_sizes
 end

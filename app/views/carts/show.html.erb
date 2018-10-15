@@ -1,17 +1,40 @@
 <h2>My Shopping Basket</h2>
 
-<% if @cart.line_items.length > 0 %>
+<% if flash[:errors].present? %>
   <ul>
-    <% @cart.line_items.each do |item| %>
-      <li>
-        <%= item.quantity %> &times
-        <%= link_to item.product.name, product_path(item.product) %>
-        <%= number_to_currency(item.total_price) %>
-         <!-- <%= button_to 'Add', line_item_path(item.id), method: 'patch' %> -->
-         <%= button_to 'Remove', line_item_path(item.id), method: 'delete' %>
-      </li>
+    <% flash[:errors].each do |e| %>
+      <li><%= e %></li>
     <% end %>
   </ul>
+<% end %>
+
+<% if @cart.line_items.length > 0 %>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Size</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Sub-Total</th>
+    </tr>
+
+    <!-- Sorts line items by the date created -->
+    <% @cart.line_items.order(:created_at).each do |item| %>
+      <tr>
+        <td><%= link_to item.product.name, product_path(item.product) %></td>
+        <td><%= item.product_size.size %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
+        <td>
+          <%= form_tag line_item_path(item.id), method: 'patch' do %>
+            <%= text_field_tag :quantity, item.quantity %>
+            <%= submit_tag 'Update' %>
+          <% end %>
+        </td>
+        <td><%= number_to_currency(item.total_price) %></td>
+        <td><%= button_to 'Remove', line_item_path(item.id), method: 'delete' %></td>
+      </tr>
+    <% end %>
+  </table>
 
 <% else %>
   <p>Your shopping basket is currently empty.</p>
