@@ -1,13 +1,14 @@
 class CartsController < ApplicationController
-  def create
-    ### Linked to 'users#create'?
-  end
 
-  def show
-    @cart = Cart.find params[:id] ### Use @current_user.cart.id instead?
-  end
+  before_action :check_if_logged_in, :fetch_cart
 
   def destroy
-    ### Linked to 'users#destroy'?
+    ### Destroy when order processed
+  end
+
+  def user_cart
+    # Get the current user's cart. If the current user
+    # doesn't have a cart, then create one
+    render :show
   end
 end

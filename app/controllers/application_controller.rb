@@ -4,11 +4,22 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def check_if_logged_in
+    unless @current_user.present?
+      flash[:error] = "You must be logged in to view that page."
+      redirect_to login_path
+    end
+  end
+
   def fetch_user
       if session[:user_id].present?
         @current_user = User.find_by id: session[:user_id]
       end
 
       session[:user_id] = nil unless @current_user.present?
+  end
+
+  def fetch_cart
+    @cart = Cart.find_or_create_by user_id: @current_user.id
   end
 end

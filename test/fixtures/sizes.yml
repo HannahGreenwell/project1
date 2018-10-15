@@ -1,7 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  size: MyText
+  product_id: 1
+  size_type: 1
+  quantity: 1
 
 two:
-  size: MyText
+  product_id: 1
+  size_type: 1
+  quantity: 1

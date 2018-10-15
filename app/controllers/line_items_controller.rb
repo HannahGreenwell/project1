@@ -1,19 +1,21 @@
 class LineItemsController < ApplicationController
 
-  def create
-    line_item = LineItem.find_by product_id: params[:product_id], cart_id: @current_user.cart.id
+  before_action :check_if_logged_in, :fetch_cart
 
-    # Check whether the user has already added the item to their cart,
-    # and if they have increase the quantity by 1, otherwise create
-    # a new line_item
-    if line_item.present?
-      new_quantity = line_item.quantity + 1
-      line_item.update quantity: new_quantity
+  def create
+    # Check if the user already has the item in their cart
+    current_item = LineItem.find_by product_id: params[:product_id], cart_id: @cart.id
+
+    # If the item is already in the user's cart, increment the quantity
+    # If the item is not in the user's cart create a new line_item record
+    if current_item.present?
+      current_item.quantity += 1
     else
-      LineItem.create product_id: params[:product_id], cart_id: @current_user.cart.id
+      current_item = LineItem.new product_id: params[:product_id], cart_id: @cart.id
     end
 
-    redirect_to cart_path(@current_user.cart)
+    current_item.save
+    redirect_to cart_path
   end
 
   def update
@@ -24,6 +26,6 @@ class LineItemsController < ApplicationController
     line_item = LineItem.find params[:id]
     line_item.destroy
 
-    redirect_to cart_path(@current_user.cart)
+    redirect_to cart_path
   end
 end
