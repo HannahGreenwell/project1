@@ -4,23 +4,35 @@ class LineItemsController < ApplicationController
   before_action :get_cart, except: [:destroy]
 
   def create
+    # Check if the user has already added the item to their cart
+    # If the user has not already added the item to their cart, create a new line_item
+    current_item = LineItem.find_or_create_by product_size_id: params[:product_size_id], cart_id: @cart.id
 
-    # Check if the user already has the item in their cart
-    current_item = LineItem.find_by product_size_id: params[:product_size_id], cart_id: @cart.id
+    requested_qty = current_item.quantity + 1  ### Change to select??
 
-    # If the item is already in the user's cart, increment the quantity
-    # If the item is not in the user's cart create a new line_item record
-    if current_item.present?
-      current_item.quantity += 1
-    else
-      current_item = LineItem.new product_size_id: params[:product_size_id], cart_id: @cart.id
+    # Check that enough stock is available
+    update_qty = current_item.get_update_qty requested_qty
+
+    # If the user's requested quantity can not be fulfilled add a flash error
+    unless update_qty == requested_qty
+      flash[:error] = "Sorry, not enough stock. Your shopping basket has been adjusted accordingly."
     end
 
-    current_item.save
+    current_item.update quantity: update_qty
+
     redirect_to cart_path
   end
 
   def update
+    requested_qty = params[:quantity].to_i
+
+    # Validates user input quantity
+    unless requested_qty > 0
+      flash[:error] = 'Please enter a valid quantity.'
+      redirect_to cart_path
+      return
+    end
+
     current_item = LineItem.find params[:id]
 
     # Check for users trying to update line items that don't belong to their cart
@@ -29,25 +41,22 @@ class LineItemsController < ApplicationController
       return
     end
 
-    new_qty = params[:quantity].to_i
+    update_qty = current_item.get_update_qty requested_qty
 
-    ### CHECK QUANTITY ###
-    if current_item.product_size.quantity < new_qty
-      puts '#################################################'
-      puts 'NOT ENOUGH STOCK'
-      puts "SOH: #{current_item.product_size.quantity}"
-      puts "Requested: #{params[:quantity]}"
-      puts '#################################################'
-      flash[:error] = "..."
-      new_qty = current_item.product_size.quantity
+    # Adds a flash error if the customers requested quantity could not be fulfilled
+    unless update_qty == requested_qty
+      flash[:error] = "Sorry, not enough stock. Your shopping basket has been adjusted accordingly."
     end
 
-    if current_item.update quantity: new_qty
-      redirect_to cart_path
-    else
-      flash[:errors] = @current_item.errors.full_messages
-      redirect_to cart_path
-    end
+    current_item.update quantity: update_qty
+
+    redirect_to cart_path
+    # if current_item.update quantity: new_qty
+    #   redirect_to cart_path
+    # else
+    #   flash[:errors] = @current_item.errors.full_messages
+    #   redirect_to cart_path
+    # end
   end
 
   def destroy

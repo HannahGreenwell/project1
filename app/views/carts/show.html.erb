@@ -1,11 +1,7 @@
 <h2>My Shopping Basket</h2>
 
-<% if flash[:errors].present? %>
-  <ul>
-    <% flash[:errors].each do |e| %>
-      <li><%= e %></li>
-    <% end %>
-  </ul>
+<% if flash[:error].present? %>
+  <p><%= flash[:error] %></p>
 <% end %>
 
 <% if @cart.line_items.length > 0 %>
