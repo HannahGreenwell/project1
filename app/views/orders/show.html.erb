@@ -1,2 +1,24 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<h2>My Order</h2>
+
+<p>Recipient Name: <%= @order.name %></p>
+<p>Shipping Address: <%= @order.address %></p>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Size</th>
+    <th>Price</th>
+    <th>Qty</th>
+    <th>Sub-Total</th>
+  </tr>
+
+  <% @order.line_items.each do |item| %>
+    <tr>
+      <td><%= link_to item.product.name, product_path(item.product) %></td>
+      <td><%= item.product_size.size %></td>
+      <td><%= number_to_currency(item.product.price) %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.total_price) %></td>
+    </tr>
+  <% end %>
+</table>

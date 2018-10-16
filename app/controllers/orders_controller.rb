@@ -20,9 +20,11 @@ class OrdersController < ApplicationController
   end
 
   def index
+    #### ???
   end
 
   def show
+    @order = Order.find params[:id]  ### Security
   end
 
   private
