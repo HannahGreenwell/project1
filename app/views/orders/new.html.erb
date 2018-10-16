@@ -1,0 +1,23 @@
+<h2>Order Details</h2>
+<% if flash[:errors].present? %>
+  <ul>
+    <% flash[:errors].each do |e| %>
+      <li><%= e %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @order do |f| %>
+  <textfield>
+    <%= f.label :name, 'Recipient' %>
+    <%= f.text_field :name %>
+  </textfield>
+  <br>
+  <textfield>
+    <%= f.label :address, 'Shipping Address' %>
+    <%= f.text_field :address %>
+  </textfield>
+  <br>
+
+  <%= f.submit %>
+<% end %>
