@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'products#show'
+
   get '/login' => 'session#new'
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
