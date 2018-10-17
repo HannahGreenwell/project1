@@ -26,13 +26,18 @@
             <%= submit_tag 'Update' %>
           <% end %>
         </td>
-        <td><%= number_to_currency(item.total_price) %></td>
+        <td><%= number_to_currency(item.get_subtotal) %></td>
         <td><%= button_to 'Remove', line_item_path(item.id), method: 'delete' %></td>
       </tr>
     <% end %>
+
+    <tr>
+      <td>Total Price:</td>
+      <td><%= number_to_currency(@cart.get_total_price) %></td>
+    </tr>
   </table>
 
-  <%= button_to 'Checkout', new_order_path, method: 'get' %>
+  <%= button_to 'Checkout', orders_path %>
 
 
 <% else %>

@@ -1,0 +1,37 @@
+<h2>Confirm Order</h2>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Size</th>
+    <th>Price</th>
+    <th>Qty</th>
+    <th>Sub-Total</th>
+  </tr>
+
+  <% @cart.line_items.each do |item| %>
+    <tr>
+      <td><%= link_to item.product.name, product_path(item.product) %></td>
+      <td><%= item.product_size.size %></td>
+      <td><%= number_to_currency(item.product.price) %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.get_subtotal) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= form_tag initiate_payment_path do %>
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_ABPwpcBRExR2PGKF6RCxqW8h"
+    data-amount="<%= @cart.get_total_price %>"
+    data-name="Hannah"
+    data-description="Example charge"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-currency="aud"
+    data-shipping-address=true>
+  </script>
+<% end %>
+<br>
+<%= link_to 'Back to Cart', cart_path %>

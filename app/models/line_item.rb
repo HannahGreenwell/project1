@@ -3,7 +3,7 @@ class LineItem < ApplicationRecord
   belongs_to :product_size, optional: true
   belongs_to :order, optional: true
 
-  def total_price
+  def get_subtotal
     self.product_size.product.price * self.quantity
   end
 
