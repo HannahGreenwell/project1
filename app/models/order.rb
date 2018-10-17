@@ -10,6 +10,13 @@ class Order < ApplicationRecord
     end
   end
 
+  def update_inventory
+    self.line_items.each do |item|
+      update_qty = item.product_size.quantity - item.quantity
+      item.product_size.update quantity: update_qty
+    end
+  end
+
   def customer_details
     self.stripe_charge_response["source"]
   end

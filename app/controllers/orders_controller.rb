@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_action :fetch_cart, only: [:confirm_order, :payment, :complete_order]
+  before_action :fetch_cart_and_check_inventory, only: [:confirm_order, :payment, :complete_order]
 
   def create
     @order = Order.create user_id: @current_user.id
@@ -28,7 +28,9 @@ class OrdersController < ApplicationController
     @order.update stripe_token: token, stripe_charge_response: charge
 
     unless @order.stripe_charge_response["outcome"]["network_status"] == "approved_by_network"
-      ### Failed Payments
+      flash[:error] = "Transaction unsuccessful. Please contact your card issuer for more details."
+      redirect_to confirm_order_path
+      return
     end
 
     redirect_to complete_order_path
@@ -37,7 +39,10 @@ class OrdersController < ApplicationController
   def complete_order
     @order = @current_user.orders.last
     @order.add_line_items_from_cart @cart
+    @order.update_inventory
     @cart.destroy
+
+    flash[:notification] = "Order successfully completed!"
 
     redirect_to order_path(@order)
   end

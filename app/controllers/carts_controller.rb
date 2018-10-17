@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 
-  before_action :check_if_logged_in, :fetch_cart
+  before_action :check_if_logged_in, :fetch_cart_and_check_inventory
 
   def user_cart
     render :show

@@ -19,7 +19,23 @@ class ApplicationController < ActionController::Base
       session[:user_id] = nil unless @current_user.present?
   end
 
-  def fetch_cart
+  def fetch_cart_and_check_inventory
     @cart = Cart.find_or_create_by user_id: @current_user.id
+
+    updated_line_items = []
+
+    @cart.line_items.each do |item|
+      if item.quantity > item.product_size.quantity
+        update_qty = item.get_update_qty item.quantity
+        item.update quantity: update_qty
+        updated_line_items << item
+      end
+    end
+
+    if updated_line_items.length > 0
+      flash[:error] = "Sorry, stock is running low. Your shopping basket has been adjusted accordingly."
+      redirect_to cart_path
+      return updated_line_items ### TEST?
+    end
   end
 end
