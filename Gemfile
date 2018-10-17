@@ -62,3 +62,5 @@ gem 'jquery-rails'
 gem 'date'
 gem 'stripe'
 gem 'cloudinary'
+
+gem 'rails_12factor', group: :production

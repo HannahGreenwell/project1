@@ -20,11 +20,11 @@
   <% end %>
 </table>
 
-<%= form_tag initiate_payment_path do %>
+<%= form_tag payment_path do %>
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_ABPwpcBRExR2PGKF6RCxqW8h"
-    data-amount="<%= @cart.get_total_price %>"
+    data-amount="<%= @cart.get_total_price * 100 %>"
     data-name="Hannah"
     data-description="Example charge"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

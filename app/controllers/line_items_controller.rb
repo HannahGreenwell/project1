@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
 
   before_action :check_if_logged_in
-  before_action :get_cart, except: [:destroy]
+  before_action :fetch_cart, except: [:destroy]
 
   def create
     # Check if the user has already added the item to their cart
@@ -64,11 +64,5 @@ class LineItemsController < ApplicationController
     line_item.destroy
 
     redirect_to cart_path
-  end
-
-  private
-
-  def get_cart
-      @cart = Cart.fetch_or_create_for_user @current_user
   end
 end

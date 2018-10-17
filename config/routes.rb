@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   resources :orders, only: [:create, :show]
 
   get '/order/confirm_order' => 'orders#confirm_order', as: 'confirm_order'
-  post '/order/initiate_payment' => 'orders#initiate_payment', as: 'initiate_payment'
+  post '/order/payment' => 'orders#payment', as: 'payment'
   get '/order/complete_order' => 'orders#complete_order', as: 'complete_order'
 end
