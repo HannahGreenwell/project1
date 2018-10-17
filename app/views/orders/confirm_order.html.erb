@@ -18,13 +18,18 @@
       <td><%= number_to_currency(item.get_subtotal) %></td>
     </tr>
   <% end %>
+
+  <tr>
+    <td>Total Price:</td>
+    <td><%= number_to_currency(@cart.get_total_price) %></td>
+  </tr>
 </table>
 
 <%= form_tag payment_path do %>
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_ABPwpcBRExR2PGKF6RCxqW8h"
-    data-amount="<%= 999 %>"
+    data-amount="<%= (@cart.get_total_price * 100).to_i %>"
     data-name="Hannah"
     data-description="Example charge"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

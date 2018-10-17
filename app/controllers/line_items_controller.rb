@@ -51,12 +51,6 @@ class LineItemsController < ApplicationController
     current_item.update quantity: update_qty
 
     redirect_to cart_path
-    # if current_item.update quantity: new_qty
-    #   redirect_to cart_path
-    # else
-    #   flash[:errors] = @current_item.errors.full_messages
-    #   redirect_to cart_path
-    # end
   end
 
   def destroy

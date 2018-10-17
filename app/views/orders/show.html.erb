@@ -1,6 +1,5 @@
 <h2>Order <%= @order.id %></h2>
 
-<p>Order Date:</p>
 <!-- Flash successful order message -->
 
 <h3>Order Summary</h3>
@@ -8,8 +7,8 @@
   <tr>
     <th>Item</th>
     <th>Size</th>
-    <th>Price</th>
     <th>Qty</th>
+    <th>Price</th>
     <th>Sub-Total</th>
   </tr>
 
@@ -17,15 +16,28 @@
     <tr>
       <td><%= link_to item.product.name, product_path(item.product) %></td>
       <td><%= item.product_size.size %></td>
-      <td><%= number_to_currency(item.product.price) %></td>
       <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.product.price) %></td>
       <td><%= number_to_currency(item.get_subtotal) %></td>
     </tr>
   <% end %>
+
+  <tr>
+    <td>Total:</td>
+    <td><%= number_to_currency(@order.stripe_charge_response["amount"] / 100) %></td>
+  </tr>
 </table>
 
 <h3>Shipping Details</h3>
+<p><%= @order.customer_details["name"] %></p>
+<p><%= @order.customer_details["address_line1"] %></p>
+<p><%= @order.customer_details["address_city"] %>,
+   <%= @order.customer_details["address_state"] %>,
+   <%= @order.customer_details["address_zip"] %></p>
+<p><%= @order.customer_details["address_country"] %></p>
 
-<h4>Shipping Address</h4>
+<h4>Payment Date</h4>
+<p><%= @order.updated_at %></p>
 
-<h4>Billing Address</h4>
+<h4>Payment Method</h4>
+<p><%= @order.customer_details["brand"] %></p>
