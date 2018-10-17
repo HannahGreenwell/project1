@@ -14,11 +14,14 @@ class OrdersController < ApplicationController
     @order = @current_user.orders.last
 
     token = params[:stripeToken]
+    total_amount = @cart.get_total_price
+    puts '++++++++++++++++++++++++++++++++++++++'
+    puts total_amount
 
     Stripe.api_key =  Rails.application.secrets.stripe_api_secret
 
     charge = Stripe::Charge.create({
-    amount: @cart.get_total_price * 100,
+    amount: 999,
     currency: 'aud',
     description: 'Example charge',
     source: token,
