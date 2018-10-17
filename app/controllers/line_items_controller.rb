@@ -15,7 +15,7 @@ class LineItemsController < ApplicationController
 
     # If the user's requested quantity can not be fulfilled add a flash error
     unless update_qty == requested_qty
-      flash[:error] = "Sorry, not enough stock. Your shopping basket has been adjusted accordingly."
+      flash[:item_error] = "Sorry, not enough stock. Your shopping basket has been adjusted accordingly."
     end
 
     current_item.update quantity: update_qty
@@ -28,7 +28,7 @@ class LineItemsController < ApplicationController
 
     # Validates user input quantity
     unless requested_qty > 0
-      flash[:error] = 'Please enter a valid quantity.'
+      flash[:item_error] = 'Please enter a valid quantity.'
       redirect_to cart_path
       return
     end
@@ -45,7 +45,7 @@ class LineItemsController < ApplicationController
 
     # Adds a flash error if the customers requested quantity could not be fulfilled
     unless update_qty == requested_qty
-      flash[:error] = "Sorry, not enough stock. Your shopping basket has been adjusted accordingly."
+      flash[:item_error] = "Sorry, not enough stock. Your shopping basket has been adjusted accordingly."
     end
 
     current_item.update quantity: update_qty

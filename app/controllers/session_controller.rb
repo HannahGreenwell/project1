@@ -9,7 +9,7 @@ class SessionController < ApplicationController
         session[:user_id] = user.id
         redirect_to products_path
     else
-      flash[:error] = "Please check your email and password."
+      flash[:login_error] = "Please check your email and password."
       redirect_to login_path
     end
   end

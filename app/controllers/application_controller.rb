@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def check_if_logged_in
     unless @current_user.present?
-      flash[:error] = "You must be logged in to view that page."
+      flash[:login_error] = "You must be logged in to view that page."
       redirect_to login_path
     end
   end
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     end
 
     if updated_line_items.length > 0
-      flash[:error] = "Sorry, stock is running low. Your shopping basket has been adjusted accordingly."
+      flash[:item_error] = "Sorry, stock is running low. Your shopping basket has been adjusted accordingly."
       redirect_to cart_path
       return updated_line_items ### TEST?
     end

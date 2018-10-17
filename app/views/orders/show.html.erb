@@ -39,7 +39,7 @@
 <p><%= @order.customer_details["address_country"] %></p>
 
 <h4>Payment Date</h4>
-<p><%= @order.updated_at %></p>
+<p><%= @order.updated_at.strftime("%b %d, %Y") %></p>
 
 <h4>Payment Method</h4>
 <p><%= @order.customer_details["brand"] %></p>

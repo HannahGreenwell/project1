@@ -1,8 +1,13 @@
 class OrdersController < ApplicationController
 
-  before_action :fetch_cart_and_check_inventory, only: [:confirm_order, :payment, :complete_order]
+  before_action :fetch_cart_and_check_inventory, except: [:show]
 
   def create
+    if @cart.is_cart_empty?
+      flash[:item_error] = "Your cart is empty."
+      redirect_to cart_path
+      return    
+    end
     @order = Order.create user_id: @current_user.id
     redirect_to confirm_order_path
   end
@@ -28,7 +33,7 @@ class OrdersController < ApplicationController
     @order.update stripe_token: token, stripe_charge_response: charge
 
     unless @order.stripe_charge_response["outcome"]["network_status"] == "approved_by_network"
-      flash[:error] = "Transaction unsuccessful. Please contact your card issuer for more details."
+      flash[:order_error] = "Transaction unsuccessful. Please contact your card issuer for more details."
       redirect_to confirm_order_path
       return
     end

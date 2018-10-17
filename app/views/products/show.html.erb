@@ -13,8 +13,8 @@
 <%= form_tag line_items_path  do %>
   <%= select_tag :product_size_id,
     options_for_select(
-      @product.product_sizes.pluck :size, :id 
-      ) %>
+      @product.product_sizes.order(:size).pluck :size, :id
+    ) %>
 
   <%= submit_tag 'Add to Cart' %>
 <% end %>

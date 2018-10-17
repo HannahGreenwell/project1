@@ -1,7 +1,7 @@
 <h2>Login</h2>
 
-<% if flash[:error].present? %>
-  <p><%= flash[:error] %></p>
+<% if flash[:login_error].present? %>
+  <p><%= flash[:login_error] %></p>
 <% end %>
 
 <%= form_tag login_path do %>
