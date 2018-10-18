@@ -21,7 +21,7 @@ A curated web store that sells treasures found on the gigantic Chinese ecommerce
 - Date
 
 ### Known Bugs
-- Out of stock items that are still in the user's cart during checkout are included in customers order.
+- Out of stock items that are still in the user's cart during checkout are included in the customer's order.
 
 ### To Do
 - About, contact and FAQ pages
@@ -30,4 +30,4 @@ A curated web store that sells treasures found on the gigantic Chinese ecommerce
 - Handle shipping costs
 
 ### Screenshot
-![8 x 8 Screenshot](/assets/eight_by_eight_screenshot.png)
+![8 x 8 Screenshot](/assets/images/eight_by_eight_screenshot.png)
