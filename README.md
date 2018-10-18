@@ -1,24 +1,33 @@
-# README
+# Project#1: 8 x 8
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Skip the reading and go straight to a live version of the site here: [https://eight-by-eight.herokuapp.com/](https://eight-by-eight.herokuapp.com/)
 
-Things you may want to cover:
+### Description
+A curated web store that sells treasures found on the gigantic Chinese ecommerce site [Taobao](https://www.taobao.com/). Each month 8 thoughtfully selected and translated items from Chinese independent designers appear on the site with the aim of promoting Chinese design to a Western market.    
 
-* Ruby version
+### Features
+- User accounts with a record of the user's order history
+- Shopping cart that informs the user when items have run out of stock
+- Secure credit card payment via the Stripe Checkout embedded payment form
+- Responsive design  
 
-* System dependencies
+### Built With
+- HTML
+- CSS
+- Ruby on Rails
 
-* Configuration
+### Gems & APIs
+- Stripe
+- Date
 
-* Database creation
+### Known Bugs
+- Out of stock items that are still in the user's cart during checkout are included in customers order.
 
-* Database initialization
+### To Do
+- About, contact and FAQ pages
+- Add multiple images to each product's show page
+- Show stock levels on product show pages
+- Handle shipping costs
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Screenshot
+![8 x 8 Screenshot](/assets/eight_by_eight_screenshot.png)
