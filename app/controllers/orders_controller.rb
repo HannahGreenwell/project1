@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
       redirect_to cart_path
       return
     end
+    
     @order = Order.create user_id: @current_user.id
     redirect_to confirm_order_path
   end

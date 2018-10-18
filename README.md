@@ -30,4 +30,4 @@ A curated web store that sells treasures found on the gigantic Chinese ecommerce
 - Handle shipping costs
 
 ### Screenshot
-![8 x 8 Screenshot](/assets/images/eight_by_eight_screenshot.png)
+![8 x 8 Screenshot](/eight_by_eight_screenshot.png)
