@@ -1,40 +1,48 @@
-<h2>My Shopping Basket</h2>
+<h2>Shopping Basket</h2>
 
 <% if flash[:item_error].present? %>
-  <p><%= flash[:item_error] %></p>
+  <p class="error">
+    <span><%= flash[:item_error] %></span>
+  </p>
 <% end %>
 
 <% if @cart.line_items.length > 0 %>
   <table>
-    <tr>
-      <th>Item</th>
-      <th>Size</th>
-      <th>Price</th>
-      <th>Qty</th>
-      <th>Sub-Total</th>
-    </tr>
-
-    <!-- Sorts line items by the date created -->
-    <% @cart.line_items.order(created_at: :desc).each do |item| %>
+    <thead>
       <tr>
-        <td><%= link_to item.product.name, product_path(item.product) %></td>
-        <td><%= item.product_size.size %></td>
-        <td><%= number_to_currency(item.product.price) %></td>
-        <td>
-          <%= form_tag line_item_path(item.id), method: 'patch' do %>
-            <%= text_field_tag :quantity, item.quantity %>
-            <%= submit_tag 'Update' %>
-          <% end %>
-        </td>
-        <td><%= number_to_currency(item.get_subtotal) %></td>
-        <td><%= button_to 'Remove', line_item_path(item.id), method: 'delete' %></td>
+        <th>Item</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Sub-Total</th>
       </tr>
-    <% end %>
+    </thead>
 
-    <tr>
-      <td>Total Price:</td>
-      <td><%= number_to_currency(@cart.get_total_price) %></td>
-    </tr>
+    <tbody>
+      <% @cart.line_items.order(created_at: :desc).each do |item| %>
+        <tr>
+          <td><%= link_to item.product.name, product_path(item.product) %></td>
+          <td><%= item.product_size.size %></td>
+          <td><%= number_to_currency(item.product.price) %></td>
+          <td><%= number_to_currency(item.get_subtotal) %></td>
+
+          <td>
+            <%= form_tag line_item_path(item.id), method: 'patch' do %>
+              <%= text_field_tag :quantity, item.quantity, class: 'quantity' %>
+              <%= submit_tag 'Update' %>
+            <% end %>
+          </td>
+          <td><%= button_to 'Remove', line_item_path(item.id), method: 'delete' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="3" class="total-price">Total Price:</td>
+        <td><%= number_to_currency(@cart.get_total_price) %></td>
+      </tr>
+    </tfoot>
   </table>
 
   <%= button_to 'Checkout', orders_path %>

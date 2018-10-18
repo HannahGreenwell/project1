@@ -1,3 +1,47 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+///// SHOW
+.users .grid-container {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-column-gap: 2em;
+}
+
+.users.show li {
+  list-style-type: none;
+  padding-bottom: 0.5em;
+}
+
+.users p {
+  padding-bottom: 0.5em;
+}
+
+span.bold {
+  font-weight: 600;
+}
+
+///// NEW & EDIT
+.users label {
+  display: block;
+  margin-bottom: 0.3em;
+}
+
+.users input[type=text], .users input[type=email], .users input[type=password] {
+  padding: 0.6em;
+  width: 25em;
+  margin-bottom: 0.5em;
+}
+
+ul.error {
+  color: red;
+  margin-bottom: 1.5em;
+  padding: 0.6em 1em;
+  border: solid 1px red;
+  display: inline-block;
+}
+
+ul.error li {
+  margin-left: 1em;
+}

@@ -22,28 +22,98 @@
 
  body {
    font-family: helvetica, sans-serif;
-   font-size: 16px;
+   font-size: 0.8em;
    line-height: 1.7em;
-   margin: 20px;
+   margin: 2em;
+   max-width: 85vw;
+ }
+
+ h1 {
+   font-size: 2em;
+   margin-bottom: 0.8em;
+ }
+
+ h2 {
+   font-size: 1.6em;
+   margin-bottom: 1em;
+   padding-bottom: 1em;
+   border-bottom: dashed 1px black;
+ }
+
+ h3 {
+   padding-bottom: 0.8em;
  }
 
  a {
    text-decoration: none;
+   color: black;
  }
 
- h1 {
-   font-size: 26px;
-   margin-bottom: 10px;
+ a:hover {
+   text-decoration: underline;
  }
 
  nav {
-   font-size: 14px;
+   font-size: 0.9em;
+   text-transform: uppercase;
+   letter-spacing: 0.1em;
+ }
+
+ nav a {
+   display: block;
+   padding-bottom: 1.2em;
+ }
+
+ nav.pages {
+   border-top: dashed 1px black;
+   border-bottom: dashed 1px black;
+   padding-top: 1.2em;
+ }
+
+ nav.account {
+   padding-top: 1.2em;
  }
 
  .app-grid-container {
    display: grid;
    grid-template-columns: 1fr 4fr;
+   grid-column-gap: 2.5em;
  }
 
  .app-grid-item {
+   /* border: solid 1px black; */
+ }
+
+ fieldset {
+   border: none;
+   margin-bottom: 1em;
+ }
+
+ input[type=submit] {
+   padding: 0.8em 1.3em;
+   margin: 1.2em 1px 0;
+   font-size: 0.8em;
+   text-transform: uppercase;
+   font-weight: 600;
+   letter-spacing: 0.1em;
+   background-color: black;
+   color: white;
+ }
+
+ select {
+   width: 10em;
+   height: 2.5em;
+   background-color: white;
+   border-radius: 0;
+ }
+
+ p.error {
+   color: red;
+   margin-bottom: 1.5em;
+   text-align: center;
+ }
+
+ p.error span {
+   padding: 0.6em 1em;
+   border: solid 1px red;
  }

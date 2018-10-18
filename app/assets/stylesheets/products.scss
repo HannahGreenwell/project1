@@ -2,21 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-fieldset {
-  border: none;
-}
-
+///// INDEX
 .products.index .grid-container {
   display: grid;
-  max-width: 86vh;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 0.5em;
+  grid-column-gap: 1em;
+  grid-row-gap: 0.5em;
 }
 
 .products.index .grid-item:last-child {
@@ -24,4 +15,25 @@ fieldset {
 
 .products.index img {
   width: 100%;
+}
+
+
+///// SHOW
+.products.show .grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 2em;
+}
+
+.products.show img {
+  width: 100%;
+}
+
+p.price {
+  padding: 1em 0 1.5em;
+  font-weight: 600;
+}
+
+.product.show input {
+  display: block;
 }

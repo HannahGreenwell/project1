@@ -1,22 +1,27 @@
-<h2>My Account</h2>
+<h2>Account Summary</h2>
 
-<h3>My Profile</h3>
-<p>Name: <%= @current_user.name %></p>
-<p>Email: <%= @current_user.email %></p>
+<div class="grid-container">
+  <div class="grid-item">
+    <h3>Profile</h3>
+    <p><span class="bold">Name:</span> <%= @current_user.name %></p>
+    <p><span class="bold">Email:</span> <%= @current_user.email %></p>
 
-<%= link_to 'Update Account', edit_user_path(@current_user) %>
- |
-<%= link_to 'Delete Account', user_path(@current_user), method: 'delete' %>
+    <%= button_to 'Update Account', edit_user_path(@current_user), method: 'get', class: "update-account" %>
+    <%= button_to 'Delete Account', user_path(@current_user), method: 'delete', class: "update-account" %>
+  </div>
 
-<h3>My Orders</h3>
-<ul>
-  <% @current_user.orders.order(updated_at: :desc).each do |order| %>
-    <% if order.stripe_charge_response.present? %>
-      <li>
-        <a href="/orders/<%= order.id %>">
-          Order <%= order.id %>, <%= order.updated_at.strftime("%b %d, %Y") %>
-        </a>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+  <div class="grid-item">
+    <h3>Order History</h3>
+    <ul>
+      <% @current_user.orders.order(updated_at: :desc).each do |order| %>
+        <% if order.stripe_charge_response.present? %>
+          <li>
+            <a href="/orders/<%= order.id %>">
+              <span class="bold">Order #<%= order.id %></span> (<%= order.updated_at.strftime("%b %d, %Y") %>)
+            </a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

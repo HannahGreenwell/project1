@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>8 x 8</title>
+    <title>E I G H T  X  E I G H T</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,33 +13,34 @@
   <body class="<%= controller_name %> <%= action_name %>">
 
     <div class="app-grid-container">
-      <div class="grid-item">
+      <div class="app-grid-item">
           <h1>8 x 8</h1>
+
+          <nav class="pages">
+            <%= link_to 'Shop', products_path %>
+            <%= link_to 'About', products_path %>
+            <%= link_to 'Contact', products_path %>
+            <%= link_to 'FAQ', products_path %>
+          </nav>
 
           <nav class="account">
             <% if @current_user.present? %>
-              Hello, <%= link_to @current_user.name, user_path(@current_user) %>
-              <br>
-              <%= link_to 'My Basket', cart_path %>
-               |
-              <%= link_to 'Sign Out', login_path, method: 'delete'  %>
+                <%= link_to 'My Basket', cart_path %>
+                <%= link_to 'My Account', user_path(@current_user) %>
+                <%= link_to 'Sign Out', login_path, method: 'delete' %>
 
             <% else %>
-              <%= link_to 'Sign In', login_path %>
-               |
-              <%= link_to 'Sign Up', new_user_path %>
+                <%= link_to 'Sign In', login_path %>
+                <%= link_to 'Sign Up', new_user_path %>
             <% end %>
-            <br>
-            <%= link_to 'All Products', products_path %>
           </nav>
-      </div>
+      </div><!-- app-grid-item -->
 
       <div class="app-grid-item">
         <main>
           <%= yield %>
         </main>
-
-      </div><!-- grid-item -->
+      </div><!-- app-grid-item -->
 
     </div><!-- grid-container -->
 
