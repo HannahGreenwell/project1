@@ -13,27 +13,31 @@
         <th>Item</th>
         <th>Size</th>
         <th>Price</th>
-        <th>Qty</th>
         <th>Subtotal</th>
+        <th>Qty</th>
       </tr>
     </thead>
 
     <tbody>
       <% @cart.line_items.order(created_at: :desc).each do |item| %>
-        <tr>
-          <td><%= link_to item.product.name, product_path(item.product) %></td>
-          <td><%= item.product_size.size %></td>
-          <td><%= number_to_currency(item.product.price) %></td>
-          <td><%= number_to_currency(item.get_subtotal) %></td>
+        <% if @updated_line_items.include?(item) %>
+          <tr class="low-stock-item">
+        <% else %>
+          <tr>
+        <% end %>
+            <td><%= link_to item.product.name, product_path(item.product) %></td>
+            <td><%= item.product_size.size %></td>
+            <td><%= number_to_currency(item.product.price) %></td>
+            <td><%= number_to_currency(item.get_subtotal) %></td>
 
-          <td>
-            <%= form_tag line_item_path(item.id), method: 'patch' do %>
-              <%= text_field_tag :quantity, item.quantity, class: 'quantity' %>
-              <%= submit_tag 'Update' %>
-            <% end %>
-          </td>
-          <td><%= button_to 'Remove', line_item_path(item.id), method: 'delete' %></td>
-        </tr>
+            <td>
+              <%= form_tag line_item_path(item.id), method: 'patch' do %>
+                <%= text_field_tag :quantity, item.quantity, class: 'quantity' %>
+                <%= submit_tag 'Update' %>
+              <% end %>
+            </td>
+            <td><%= button_to 'Remove', line_item_path(item.id), method: 'delete' %></td>
+          </tr>
       <% end %>
     </tbody>
 

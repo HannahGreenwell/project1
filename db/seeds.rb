@@ -10,14 +10,14 @@
 ### PRODUCTS ###
 Product.destroy_all
 
-p1 = Product.create name: 'The Fake Canvas Shoes - Blue', brand: 'Purlicue', price: 150.00
-p2 = Product.create name: 'The Fake Canvas Shoes - Black', brand: 'Purlicue', price: 150.00
+p1 = Product.create name: 'The Fake Canvas Shoes - Blue', brand: 'Purlicue', price: 120.00
+p2 = Product.create name: 'The Fake Canvas Shoes - Black', brand: 'Purlicue', price: 120.00
 p3 = Product.create name: 'Denim Baseball Shirt', brand: '慢茶mcha', price: 40.00
 p4 = Product.create name: 'Circle Printed T-Shirt', brand: '慢茶mcha', price: 30.00
 p5 = Product.create name: 'Herbal Medicine Bucket Hat', brand: 'Triple Major', price: 60.00
 p6 = Product.create name: 'Herbal Medicine Printed T-Shirt', brand: 'Triple Major', price: 60.00
-p7 = Product.create name: 'Upcycled Rectangle Bumbag', brand: 'Remix', price: 35.00
-p8 = Product.create name: 'Upcycled Circle Bumbag', brand: 'Remix', price: 150.00
+p7 = Product.create name: 'Upcycled Rectangle Bumbag', brand: 'Remix', price: 55.00
+p8 = Product.create name: 'Upcycled Circle Bumbag', brand: 'Remix', price: 40.00
 
 puts "Created #{Product.all.length} products."
 
@@ -62,19 +62,40 @@ c3 = Cart.create user_id: u3.id
 
 puts "Created #{Cart.all.length} carts."
 
-# ### LINE ITEMS ###
-# li1 = LineItem.create cart_id: c1.id, product_id: p1.id
-# li2 = LineItem.create cart_id: c1.id, product_id: p3.id
-# li3 = LineItem.create cart_id: c2.id, product_id: p1.id
-#
-# puts "Created #{LineItem.all.length} line items."
-
 ### SIZE ITEMS ###
 ProductSize.destroy_all
 
-s1 = ProductSize.create product_id: p1.id, size: '39', quantity: 2
-s2 = ProductSize.create product_id: p1.id, size: '40', quantity: 2
-s3 = ProductSize.create product_id: p1.id, size: '41', quantity: 2
-s4 = ProductSize.create product_id: p1.id, size: '42', quantity: 2
+ProductSize.create product_id: p1.id, size: '39', quantity: 2
+ProductSize.create product_id: p1.id, size: '40', quantity: 2
+ProductSize.create product_id: p1.id, size: '41', quantity: 2
+ProductSize.create product_id: p1.id, size: '42', quantity: 2
+
+ProductSize.create product_id: p2.id, size: '39', quantity: 2
+ProductSize.create product_id: p2.id, size: '40', quantity: 2
+ProductSize.create product_id: p2.id, size: '41', quantity: 2
+ProductSize.create product_id: p2.id, size: '42', quantity: 2
+
+ProductSize.create product_id: p3.id, size: 'xsmall', quantity: 2
+ProductSize.create product_id: p3.id, size: 'small', quantity: 2
+ProductSize.create product_id: p3.id, size: 'medium', quantity: 2
+ProductSize.create product_id: p3.id, size: 'large', quantity: 2
+
+ProductSize.create product_id: p4.id, size: 'xsmall', quantity: 2
+ProductSize.create product_id: p4.id, size: 'small', quantity: 2
+ProductSize.create product_id: p4.id, size: 'medium', quantity: 2
+ProductSize.create product_id: p4.id, size: 'large', quantity: 2
+
+ProductSize.create product_id: p5.id, size: 'os', quantity: 8
+
+ProductSize.create product_id: p6.id, size: 'xsmall', quantity: 2
+ProductSize.create product_id: p6.id, size: 'small', quantity: 2
+ProductSize.create product_id: p6.id, size: 'medium', quantity: 2
+ProductSize.create product_id: p6.id, size: 'large', quantity: 2
+
+ProductSize.create product_id: p7.id, size: 'os', quantity: 8
+
+ProductSize.create product_id: p8.id, size: 'os', quantity: 8
 
 puts "Created #{ProductSize.all.length} product_sizes."
+
+Product.all.update description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus sed odio efficitur suscipit a eu urna. Donec sed faucibus nisi. Maecenas in dictum tortor. Proin libero ex, gravida a posuere in, rutrum ut magna. Fusce volutpat, felis sit amet placerat condimentum, lorem augue consectetur purus, eget bibendum risus nibh vitae tortor. Etiam viverra, augue ornare tempor convallis, odio arcu volutpat arcu, ut vestibulum risus ligula in metus.'

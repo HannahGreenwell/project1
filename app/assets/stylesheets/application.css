@@ -109,7 +109,7 @@
    text-transform: uppercase;
    font-weight: 600;
    letter-spacing: 0.1em;
-   background-color: black;
+   background-color: #666;
    color: white;
  }
 
@@ -130,8 +130,8 @@
  ul.error {
    border: solid 1px red;
    display: inline-block;
-   list-style-type: none;
    padding-top: 0.6em;
+   list-style-type: none;
  }
 
  ul.error li {
