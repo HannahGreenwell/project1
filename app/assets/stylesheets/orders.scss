@@ -1,3 +1,46 @@
 // Place all the styles related to the orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+a.back-to-cart {
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-left: 3px;
+}
+
+button.stripe-button-el {
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.orders.show .grid-container {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2em;
+}
+
+.orders.show p {
+  padding-bottom: 0.5em;
+}
+
+.orders.show h3.payment-method {
+  margin-top: 1em;
+}
+
+///// NOTIFICATION
+
+.notification {
+  color: limegreen;
+  margin-bottom: 1.8em;
+  letter-spacing: 0.1em;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+ p.notification span {
+   padding: 0.6em 1em;
+   border: solid 1px limegreen;
+ }

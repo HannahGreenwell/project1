@@ -22,26 +22,6 @@ span.bold {
   font-weight: 600;
 }
 
-///// NEW & EDIT
-.users label {
-  display: block;
-  margin-bottom: 0.3em;
-}
-
-.users input[type=text], .users input[type=email], .users input[type=password] {
-  padding: 0.6em;
-  width: 25em;
-  margin-bottom: 0.5em;
-}
-
-ul.error {
-  color: red;
-  margin-bottom: 1.5em;
-  padding: 0.6em 1em;
-  border: solid 1px red;
-  display: inline-block;
-}
-
-ul.error li {
-  margin-left: 1em;
+input[type=submit].update-account {
+  margin-top: 1.5em;
 }

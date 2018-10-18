@@ -5,28 +5,34 @@
 <% end %>
 
 <table>
-  <tr>
-    <th>Item</th>
-    <th>Size</th>
-    <th>Price</th>
-    <th>Qty</th>
-    <th>Sub-Total</th>
-  </tr>
-
-  <% @cart.line_items.each do |item| %>
+  <thead>
     <tr>
-      <td><%= link_to item.product.name, product_path(item.product) %></td>
-      <td><%= item.product_size.size %></td>
-      <td><%= number_to_currency(item.product.price) %></td>
-      <td><%= item.quantity %></td>
-      <td><%= number_to_currency(item.get_subtotal) %></td>
+      <th>Item</th>
+      <th>Size</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Subtotal</th>
     </tr>
-  <% end %>
+  </thead>
 
-  <tr>
-    <td>Total Price:</td>
-    <td><%= number_to_currency(@cart.get_total_price) %></td>
-  </tr>
+  <tbody>
+    <% @cart.line_items.each do |item| %>
+      <tr>
+        <td><%= link_to item.product.name, product_path(item.product) %></td>
+        <td><%= item.product_size.size %></td>
+        <td><%= number_to_currency(item.product.price) %></td>
+        <td><%= item.quantity %></td>
+        <td><%= number_to_currency(item.get_subtotal) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="4" class="total-price">Total Price:</td>
+      <td><%= number_to_currency(@cart.get_total_price) %></td>
+    </tr>
+  </tfoot>
 </table>
 
 <%= form_tag payment_path do %>
@@ -34,13 +40,13 @@
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_ABPwpcBRExR2PGKF6RCxqW8h"
     data-amount="<%= (@cart.get_total_price * 100).to_i %>"
-    data-name="Hannah"
-    data-description="Example charge"
+    data-name="8 x 8"
+    data-description="Order #<%= @current_user.orders.last.id %>"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-locale="auto"
     data-currency="aud"
     data-shipping-address=true>
   </script>
 <% end %>
-<br>
-<%= link_to 'Back to Cart', cart_path %>
+
+<%= link_to 'Back to Cart', cart_path, class: 'back-to-cart' %>

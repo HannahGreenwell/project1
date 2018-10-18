@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     if @cart.is_cart_empty?
       flash[:item_error] = "Your cart is empty."
       redirect_to cart_path
-      return    
+      return
     end
     @order = Order.create user_id: @current_user.id
     redirect_to confirm_order_path
@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
     @order.update_inventory
     @cart.destroy
 
-    flash[:notification] = "Order successfully completed!"
+    flash[:notification] = "Order successful!!!"
 
     redirect_to order_path(@order)
   end
