@@ -99,3 +99,6 @@ ProductSize.create product_id: p8.id, size: 'os', quantity: 8
 puts "Created #{ProductSize.all.length} product_sizes."
 
 Product.all.update description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus sed odio efficitur suscipit a eu urna. Donec sed faucibus nisi. Maecenas in dictum tortor. Proin libero ex, gravida a posuere in, rutrum ut magna. Fusce volutpat, felis sit amet placerat condimentum, lorem augue consectetur purus, eget bibendum risus nibh vitae tortor. Etiam viverra, augue ornare tempor convallis, odio arcu volutpat arcu, ut vestibulum risus ligula in metus.'
+
+Order.destroy_all
+puts "#{Order.all.length} orders."

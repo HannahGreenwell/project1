@@ -22,17 +22,17 @@ class ApplicationController < ActionController::Base
   def fetch_cart_and_check_inventory
     @cart = Cart.find_or_create_by user_id: @current_user.id
 
-    @updated_line_items = []
+    updated_line_items = []
 
     @cart.line_items.each do |item|
       if item.quantity > item.product_size.quantity
         update_qty = item.get_update_qty item.quantity
         item.update quantity: update_qty
-        @updated_line_items << item
+        updated_line_items << item
       end
     end
 
-    if @updated_line_items.length > 0
+    if updated_line_items.length > 0
       flash[:item_error] = "Sorry, stock is running low. Your shopping basket has been adjusted accordingly."
       redirect_to cart_path
       return
