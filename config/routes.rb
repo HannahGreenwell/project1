@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show]
   resources :carts, only: [:create, :destroy]
   resources :line_items, only: [:create, :update, :destroy]
-
   resources :orders, only: [:create, :show]
 
   get '/order/confirm_order' => 'orders#confirm_order', as: 'confirm_order'
