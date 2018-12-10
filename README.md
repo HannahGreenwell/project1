@@ -29,8 +29,9 @@ A curated web store that sells treasures found on the gigantic Chinese ecommerce
 - Add multiple images to each product's show page
 - Show stock levels on product show pages
 - Handle shipping costs
-- Admin side
+- Admin portal
 - Testing
+- Responsive layout
 
 ### Screenshot
-![8 x 8 Screenshot](./eight_by_eight_screenshot.png)
+![8 x 8 Screenshot](./eight_by_eight_screenshot.jpeg)
