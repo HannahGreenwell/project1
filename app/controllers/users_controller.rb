@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   # sign-up form
   def new
     @user = User.new

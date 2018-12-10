@@ -5,18 +5,35 @@
 ///// INDEX
 .products.index .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 1em;
-  grid-row-gap: 0.5em;
+  grid-template-columns: 19.3vw 19.3vw 19.3vw;
+  grid-column-gap: 1vw;
+  grid-template-rows: 19.3vw 19.3vw 19.3vw;
+  grid-row-gap: 1vw;
+  // border: solid 1px #CCC;
 }
 
-.products.index .grid-item:last-child {
+.products.index .grid-item {
+  border: solid 1px #DDD;
 }
 
 .products.index img {
   width: 100%;
 }
 
+.products.index .last-cell {
+  align-self: center;
+  text-align: center;
+  border: none;
+}
+
+.last-cell p {
+  display: inline-block;
+  color: red;
+  letter-spacing: 2px;
+  padding-bottom: 2px;
+  border-bottom: solid 3px red;
+  font-style: italic;
+}
 
 ///// SHOW
 .products.show .grid-container {

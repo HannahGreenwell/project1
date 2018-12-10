@@ -76,7 +76,8 @@
 
  .app-grid-container {
    display: grid;
-   grid-template-columns: 1fr 4fr;
+   /* grid-template-columns: 1fr 4fr; */
+   grid-template-columns: 15vw 60vw;
    grid-column-gap: 2.5em;
  }
 
@@ -109,8 +110,10 @@
    text-transform: uppercase;
    font-weight: 600;
    letter-spacing: 0.1em;
-   background-color: #666;
-   color: white;
+   border: solid 1px black;
+   background-color: #DFDFDF;
+   color: black;
+   cursor: pointer;
  }
 
  select {
