@@ -5,14 +5,15 @@ class Order < ApplicationRecord
   # 'Moves' a customer's line items from their cart to their order following successful payment
   def add_line_items_from_cart(cart)
     cart.line_items.each do |item|
-      # Set the item's cart_id to nil so that line_items are not lost when cart is destroyed
+      # Set the item's cart_id to nil so that line_items are no longer associated with the (so to be destroyed) cart
       item.cart_id = nil
-      # Add the current line item to @order.line_items, so that the foreign key field (order_id) # is automatically filled in by Rails
+      # Add the current line item to @order.line_items, so that the order_id
+      # is automatically filled in by Rails
       self.line_items << item
     end
   end
 
-  # Updates the quantity stored in the product_sizes table after an order has been successfully completed
+  # Update stock levels aftet the completion of a successful order
   def update_inventory
     self.line_items.each do |item|
       update_qty = item.product_size.quantity - item.quantity

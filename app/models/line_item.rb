@@ -3,12 +3,13 @@ class LineItem < ApplicationRecord
   belongs_to :product_size, optional: true
   belongs_to :order, optional: true
 
+  # Gets the subtotal of the line_item 
   def get_subtotal
     self.product_size.product.price * self.quantity
   end
 
-  # Checks the requested stock quantity against the actual stock on hand
-  # and returns the lesser of the two
+  # Checks the requested qty against current stock levels
+  # If requested qty can't be fulfilled, adjust the update qty
   def get_update_qty(requested_qty)
     update_qty = requested_qty
 
@@ -19,7 +20,7 @@ class LineItem < ApplicationRecord
     update_qty
   end
 
-  # Gets a product from a line_item through product_size
+  # Shortcut to a product through product_size
   def product
     self.product_size.product
   end
